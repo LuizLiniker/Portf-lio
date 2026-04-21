@@ -1,0 +1,14 @@
+@import "tailwindcss";
+
+
+:root{
+  --color-primary: #3B82F6;
+  --color-secondary: #1E293B;
+  --color-tertiary: #D16900;
+  --color-neutral: #0F172A;
+
+
+  --text-heandline: "Manrope";
+  --text-body: "Inter";
+  --text-label: "Inter"
+}
