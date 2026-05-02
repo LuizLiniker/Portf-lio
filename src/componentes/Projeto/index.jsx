@@ -1,87 +1,130 @@
-export function Projeto() {
+import { Reveal } from "../Reveal/index";
 
-const card_projeto = [
+const projects = [
 {
-    id: 1,
-    img: "https://via.placeholder.com/300",
-    descricao_img: "Fluxo de caixa",
-    titulo: "Fluxo de caixa - Integrado com IA",
-    descricao: "Fluxo de caixa integrado com API do WhatsApp e IA (Claude)",
-    github: "#",
-    linguagens: ["Next.js", "Node.js", "N8N", "Supabase"],
+id: 1,
+titulo: "Fluxo de Caixa Inteligente",
+descricao:
+    "Sistema financeiro automatizado com WhatsApp e IA para análise de gastos.",
+impacto: "Redução de processos manuais financeiros",
+tipo: "Automação + IA",
+stack: ["Next.js", "Node.js", "Supabase", "AI", "N8N"],
+demo: "#",
+github: "#",
+img: "/fluxo-caixa.png"
 },
 {
-    id: 2,
-    img: "https://via.placeholder.com/300",
-    descricao_img: "Sistema RPG",
-    titulo: "Sistema RPG",
-    descricao: "App que transforma metas em um sistema de RPG com XP e progresso",
-    github: "#",
-    linguagens: ["Next.js", "Node.js", "N8N", "SQL"],
+id: 2,
+titulo: "Sistema RPG de Produtividade",
+descricao:
+    "Transforma metas em RPG com XP e níveis para aumentar consistência.",
+impacto: "Aumento de motivação e disciplina",
+tipo: "Gamificação",
+stack: ["Next.js", "Node.js", "SQL"],
+demo: "#",
+github: "#",
+img: "/rpg.png"
 }
 ];
 
+export function Projeto() {
 return (
-<section className="bg-(--color-secondary) px-4 py-16">
+<section
+    id="Projetos"
+    className="scroll-mt-24 bg-(--color-bg) px-4 py-20"
+>
+    {/* HEADER */}
+    <div className="max-w-6xl mx-auto mb-12">
 
-    {/* Título da seção */}
-    <div className="max-w-6xl mx-auto mb-10">
-        <h2 className="text-2xl md:text-3xl text-white font-(--text-heandline)">
-            Projetos
+    <Reveal>
+        <h2 className="text-(--color-text) text-3xl font-bold">
+        Projetos
         </h2>
-        <p className="text-gray-400 mt-2">
-            Alguns projetos que desenvolvi para praticar e evoluir minhas habilidades.
+    </Reveal>
+
+    <Reveal delay={0.1}>
+        <p className="text-(--color-text-muted) mt-2">
+        Produtos reais focados em automação, IA e performance.
         </p>
+    </Reveal>
+
     </div>
 
-    {/* Grid */}
-    <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    {/* GRID */}
+    <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8">
 
-        {card_projeto.map((card) => (
-            <div 
-                key={card.id} 
-                className="rounded-2xl overflow-hidden bg-(--color-neutral) shadow-md hover:shadow-xl transform hover:-translate-y-1 transition duration-300"
-            >
+    {projects.map((card, i) => (
+        <Reveal key={card.id} delay={i * 0.1}>
 
-                <img
-                    className="w-full h-48 object-cover"
-                    src={card.img}
-                    alt={card.descricao_img}
-                />
+        <div className="group bg-(--color-surface) rounded-2xl overflow-hidden border border-(--color-border) hover:border-(--color-primary)/40 transition">
 
-                <div className="p-5">
-                    <h3 className="text-lg font-semibold text-white mb-2">
-                        {card.titulo}
-                    </h3>
+            {/* IMAGEM */}
+            <img
+            src={card.img}
+            alt={card.titulo}
+            className="h-48 w-full object-cover group-hover:scale-105 transition duration-500"
+            />
 
-                    <p className="text-gray-400 text-sm mb-4">
-                        {card.descricao}
-                    </p>
+            <div className="p-5 space-y-3">
 
-                    <div className="flex flex-wrap gap-2 mb-4">
-                        {card.linguagens.map((lang, i) => (
-                            <span 
-                                key={i} 
-                                className="bg-gray-700 text-gray-200 text-xs px-2 py-1 rounded"
-                            >
-                                {lang}
-                            </span>
-                        ))}
-                    </div>
+            {/* TAG */}
+            <span className="text-xs text-(--color-primary) uppercase tracking-widest">
+                {card.tipo}
+            </span>
 
-                    <a
-                        href={card.github}
-                        className="inline-block bg-(--color-primary) text-black px-4 py-2 rounded-md text-sm hover:opacity-90 transition"
-                    >
-                        Ver projeto
-                    </a>
-                </div>
+            {/* TÍTULO */}
+            <h3 className="text-(--color-text) text-lg font-semibold">
+                {card.titulo}
+            </h3>
+
+            {/* DESCRIÇÃO */}
+            <p className="text-(--color-text-muted) text-sm">
+                {card.descricao}
+            </p>
+
+            {/* IMPACTO */}
+            <p className="text-(--color-text-muted)/70 text-xs italic">
+                {card.impacto}
+            </p>
+
+            {/* STACK */}
+            <div className="flex flex-wrap gap-2 pt-2">
+                {card.stack.map((tech, i) => (
+                <span
+                    key={i}
+                    className="text-xs px-2 py-1 rounded-md bg-(--color-bg) text-(--color-text-muted) border border-(--color-border)"
+                >
+                    {tech}
+                </span>
+                ))}
+            </div>
+
+            {/* BOTÕES */}
+            <div className="flex gap-3 pt-4">
+
+                <a
+                href={card.demo}
+                className="flex-1 text-center bg-(--color-primary) text-black py-2 rounded-md hover:opacity-90 transition"
+                >
+                Demo
+                </a>
+
+                <a
+                href={card.github}
+                className="flex-1 text-center border border-(--color-border) text-(--color-text) py-2 rounded-md hover:border-(--color-primary) transition"
+                >
+                GitHub
+                </a>
 
             </div>
-        ))}
+
+            </div>
+        </div>
+
+        </Reveal>
+    ))}
 
     </div>
-
 </section>
 );
 }

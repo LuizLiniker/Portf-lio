@@ -1,14 +1,39 @@
 @import "tailwindcss";
 
+:root {
+  /* LIGHT MODE (default) */
+  --color-primary: #6366F1;      /* Indigo neon suave */
+  --color-secondary: #8B5CF6;    /* Roxo vibrante */
+  --color-accent: #22D3EE;       /* Cyan neon */
+  --color-highlight: #A78BFA;    /* Glow roxo claro */
 
-:root{
-  --color-primary: #3B82F6;
-  --color-secondary: #1E293B;
-  --color-tertiary: #D16900;
-  --color-neutral: #0F172A;
+  --color-bg: #F8FAFC;           /* Fundo claro clean */
+  --color-surface: #FFFFFF;
+  --color-border: #E2E8F0;
 
+  --color-text: #0F172A;
+  --color-text-muted: #475569;
 
-  --text-heandline: "Manrope";
+  --color-glow: 0 0 20px rgba(139, 92, 246, 0.35);
+
+  --text-headline: "Manrope";
   --text-body: "Inter";
-  --text-label: "Inter"
+  --text-label: "Inter";
+}
+
+/* DARK MODE */
+.dark {
+  --color-primary: #818CF8;      /* Indigo mais brilhante */
+  --color-secondary: #A855F7;    /* Roxo neon forte */
+  --color-accent: #22D3EE;       /* Cyan continua neon */
+  --color-highlight: #C084FC;
+
+  --color-bg: #020617;           /* Fundo quase preto */
+  --color-surface: #0F172A;      /* Cards */
+  --color-border: #1E293B;
+
+  --color-text: #E2E8F0;
+  --color-text-muted: #94A3B8;
+
+  --color-glow: 0 0 25px rgba(168, 85, 247, 0.5);
 }

@@ -1,84 +1,102 @@
-import React from "react";
+import { useState } from "react";
+import { Reveal } from "../Reveal/index";
 
 export default function Contato() {
+const [status, setStatus] = useState("idle");
+
+const handleSubmit = (e) => {
+e.preventDefault();
+setStatus("loading");
+
+setTimeout(() => setStatus("success"), 1200);
+};
+
 return (
-<section className="min-h-screen bg-(--color-secondary) text-white flex items-center justify-center px-6">
-    <div className="max-w-6xl w-full grid md:grid-cols-2 gap-10 items-center">
+<section
+    id="Contato"
+    className="scroll-mt-24 bg-(--color-bg) px-6 py-20"
+>
+    <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-start">
 
-    {/* Lado Esquerdo */}
-    <div className="space-y-6">
-        <h1 className="text-4xl md:text-5xl font-bold leading-tight">
-        Vamos construir algo <span className="text-(--color-primary)">extraordinário</span> juntos.
-        </h1>
+    {/* LADO ESQUERDO */}
+    <Reveal>
+        <div className="space-y-4">
 
-        <p className="text-gray-400 max-w-md">
-        Seja para um projeto específico ou apenas para conversar sobre tecnologia, minha caixa de entrada está sempre aberta.
+        <h2 className="text-4xl font-bold text-(--color-text)">
+            Vamos trabalhar juntos
+        </h2>
+
+        <p className="text-(--color-text-muted)">
+            Aberto para projetos, freelas ou oportunidades na área de desenvolvimento.
         </p>
 
-        <div className="space-y-4">
-        <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-(--color-neutral) flex items-center justify-center">
-            📧
-            </div>
-            <div>
-            <p className="text-sm text-gray-400">EMAIL</p>
-            <p className="text-white">linikerluiz32@gmail.com</p>
-            </div>
-        </div>
+        {/* STATUS VISUAL */}
+        {status === "success" && (
+            <p className="text-green-400 text-sm">
+            Mensagem enviada com sucesso ✔
+            </p>
+        )}
 
-        <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-(--color-neutral) flex items-center justify-center">
-            📍
-            </div>
-            <div>
-            <p className="text-sm text-gray-400">LOCALIZAÇÃO</p>
-            <p className="text-white">Monsenhor Paulo <span className="text-(--color-primary)">MG</span> (Remoto)</p>
-            </div>
         </div>
-        </div>
-    </div>
+    </Reveal>
 
-    {/* Lado Direito */}
-    <div className="bg-[#0f172a] p-8 rounded-2xl shadow-lg border border-gray-800">
-        <form className="space-y-5">
+    {/* FORMULÁRIO */}
+    <Reveal delay={0.1}>
+        <form
+        onSubmit={handleSubmit}
+        className="bg-(--color-surface) p-6 rounded-2xl border border-(--color-border) space-y-4"
+        >
 
-        <div className="grid md:grid-cols-2 gap-4">
-            <div>
-            <label className="text-sm text-gray-400">NOME COMPLETO</label>
+        {/* NOME */}
+        <div className="space-y-1">
+            <label className="text-xs text-(--color-text-muted)">
+            Nome
+            </label>
             <input
-                type="text"
-                placeholder="Seu nome"
-                className="w-full mt-1 p-3 bg-[#020617] border border-gray-700 rounded-lg outline-none focus:border-blue-500"
+            className="w-full p-3 bg-(--color-bg) border border-(--color-border) rounded-md text-(--color-text) outline-none focus:border-(--color-primary)"
+            placeholder="Seu nome"
             />
-            </div>
-
-            <div>
-            <label className="text-sm text-gray-400">EMAIL</label>
-            <input
-                type="email"
-                placeholder="seuemail@email.com"
-                className="w-full mt-1 p-3 bg-[#020617] border border-gray-700 rounded-lg outline-none focus:border-blue-500"
-            />
-            </div>
         </div>
 
-        <div>
-            <label className="text-sm text-gray-400">MENSAGEM</label>
+        {/* EMAIL */}
+        <div className="space-y-1">
+            <label className="text-xs text-(--color-text-muted)">
+            Email
+            </label>
+            <input
+            className="w-full p-3 bg-(--color-bg) border border-(--color-border) rounded-md text-(--color-text) outline-none focus:border-(--color-primary)"
+            placeholder="seuemail@email.com"
+            />
+        </div>
+
+        {/* MENSAGEM */}
+        <div className="space-y-1">
+            <label className="text-xs text-(--color-text-muted)">
+            Mensagem
+            </label>
             <textarea
             rows="5"
+            className="w-full p-3 bg-(--color-bg) border border-(--color-border) rounded-md text-(--color-text) outline-none focus:border-(--color-primary)"
             placeholder="Me conte sobre seu projeto..."
-            className="w-full mt-1 p-3 bg-[#020617] border border-gray-700 rounded-lg outline-none focus:border-blue-500"
             />
         </div>
 
+        {/* BOTÃO */}
         <button
             type="submit"
-            className="w-full py-3 bg-blue-500 hover:bg-blue-600 transition rounded-lg font-medium"
+            disabled={status === "loading"}
+            className="w-full bg-(--color-primary) text-black py-3 rounded-md font-medium hover:opacity-90 transition disabled:opacity-50"
         >
-            Enviar Mensagem
+            {status === "loading"
+            ? "Enviando..."
+            : status === "success"
+            ? "Enviado ✔"
+            : "Enviar mensagem"}
         </button>
+
         </form>
-    </div>
+    </Reveal>
+
     </div>
 </section>
 );
